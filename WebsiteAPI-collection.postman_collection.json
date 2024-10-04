@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "fc1e0794-978d-420f-b4d2-49f39b2a4000",
+		"name": "WebsiteAPI-json-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38004015"
+	},
+	"item": [
+		{
+			"name": "Get All Products List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Response code is JSON format and status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// Check that response is not empty \r",
+							"pm.test(\"Response is not empty\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.products).to.be.an('array').and.not.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://automationexercise.com/api/productsList",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"productsList"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
