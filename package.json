@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "newman run WebsiteAPI-json-collection.postman_collection.json"
+        "test": "newman run WebsiteAPI-collection.postman_collection.json"
     },
     "keywords": [],
     "author": "",
