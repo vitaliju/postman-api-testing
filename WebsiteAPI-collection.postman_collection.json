@@ -27,7 +27,7 @@
 							"\r",
 							"// Check that products list is not empty \r",
 							"pm.test(\"Products list is not empty\", () => {\r",
-							"  pm.expect(responseData.products).to.be.an('array').and.not.empty;\r",
+							"  pm.expect(responseData).to.have.property('products').and.not.empty;\r",
 							"   responseData.products.forEach(function (item) {  \r",
 							"        pm.expect(item).to.have.property('id');\r",
 							"        pm.expect(item).to.have.property('name');\r",
@@ -250,7 +250,179 @@
 			"response": []
 		},
 		{
+			"name": "Create/Register User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 201\r",
+							"pm.test(\"Returns responseCode 201\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(201);\r",
+							"});\r",
+							"\r",
+							"// Check that string \"User created!\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"User created!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Marcos",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{userEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mr",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "April",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "1989",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Marco",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Drago",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Alias",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "Kauno g.",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "Some",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "Canada",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Some",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Some",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "988799",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "789654",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/createAccount",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"createAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login with valid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 200\r",
+							"pm.test(\"Returns responseCode 200\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(200);\r",
+							"});\r",
+							"\r",
+							"// Check that string  \"User exists!\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq( \"User exists!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -259,12 +431,12 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "\"vitbit@89.com\"",
+							"value": "{{userEmail}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "\"456aaa\"",
+							"value": "{{userPassword}}",
 							"type": "text"
 						}
 					]
@@ -286,11 +458,64 @@
 		},
 		{
 			"name": "Get user account detail by email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check responseCode is 200\r",
+							"pm.test(\"Returns responseCode 200\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(200);\r",
+							"});\r",
+							"\r",
+							"// Check that user account is not empty \r",
+							"pm.test(\"Account has user data\", () => {\r",
+							"  pm.expect(responseData).to.have.property('user').and.not.empty;\r",
+							"  pm.expect(responseData.user).to.have.property('name');\r",
+							"  pm.expect(responseData.user).to.have.property('email');\r",
+							"  pm.expect(responseData.user).to.have.property('title');\r",
+							"  pm.expect(responseData.user).to.have.property('birth_day');\r",
+							"  pm.expect(responseData.user).to.have.property('birth_month');\r",
+							"  pm.expect(responseData.user).to.have.property('birth_year');\r",
+							"  pm.expect(responseData.user).to.have.property('first_name');\r",
+							"  pm.expect(responseData.user).to.have.property('last_name');\r",
+							"  pm.expect(responseData.user).to.have.property('company');\r",
+							"  pm.expect(responseData.user).to.have.property('address1');\r",
+							"  pm.expect(responseData.user).to.have.property('address2');\r",
+							"  pm.expect(responseData.user).to.have.property('country');\r",
+							"  pm.expect(responseData.user).to.have.property('state');\r",
+							"  pm.expect(responseData.user).to.have.property('city');\r",
+							"  pm.expect(responseData.user).to.have.property('zipcode');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
-					"raw": "https://automationexercise.com/api/getUserDetailByEmail",
+					"raw": "https://automationexercise.com/api/getUserDetailByEmail?email={{userEmail}}",
 					"protocol": "https",
 					"host": [
 						"automationexercise",
@@ -299,10 +524,119 @@
 					"path": [
 						"api",
 						"getUserDetailByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{userEmail}}"
+						}
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Delete User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 200\r",
+							"pm.test(\"Returns responseCode 200\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(200);\r",
+							"});\r",
+							"\r",
+							"// Check that string  \"Account deleted!\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"Account deleted!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{userEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/deleteAccount",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"deleteAccount"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userEmail",
+			"value": "zuzu@test.com",
+			"type": "string"
+		},
+		{
+			"key": "userPassword",
+			"value": "\"123456zzz\"",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": ""
 		}
 	]
 }
