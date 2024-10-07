@@ -44,17 +44,13 @@ Would like to run this project locally? Open terminal and follow these steps:
 
 ## Run Tests
 
-Once the installation is complete, you can run the Newman and Postman tests as follow:
+Once the installation is complete, you can run the Newman tests as follow:
 
 1: Running Newman :
 
 ```sh
 npm run test
 ```
-
-2: Running Tests in Postman:
-
-import WebsiteAPI-collection to Postman and select run collection
 
 ### View Test Results
 
