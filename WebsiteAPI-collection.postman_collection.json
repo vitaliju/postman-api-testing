@@ -747,7 +747,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE To Verify Login",
+			"name": "Delete To Verify Login",
 			"event": [
 				{
 					"listen": "test",
