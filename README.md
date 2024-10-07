@@ -1,4 +1,4 @@
-### Website API Testing With Postman/Newman
+# Website API Testing With Postman/Newman
 
 This repository contains Postman collections designed for API testing, with the capability to run automated tests using Newman, the CLI companion to Postman. These collections are crafted to ensure that tests are re-runnable without side effects, allowing for consistent and reliable testing in different environments.
 
