@@ -129,7 +129,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// Define responseData variable\r",
 							"const responseData = pm.response.json();\r",
 							"\r",
 							"//pm.collectionVariables.set(\"userEmail\", responseData.email);\r",
@@ -262,148 +261,6 @@
 					"path": [
 						"api",
 						"createAccount"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User Account",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"// const responseData = pm.response.json();\r",
-							"\r",
-							"// // Response status is 200\r",
-							"// pm.test(\"Response status code is 200\", () => {\r",
-							"//     pm.response.to.have.status(200);\r",
-							"// });\r",
-							"\r",
-							"// // ResponseCode is 200\r",
-							"// pm.test(\"Returns responseCode 200\", () => {\r",
-							"//     pm.expect(responseData.responseCode).to.eq(200);\r",
-							"// });\r",
-							"\r",
-							"// // Check that string \"User updated!\" is returned\r",
-							"// pm.test(\"Returns correct message\", () => {\r",
-							"//     pm.expect(responseData.message).to.eq(\"User updated!\");\r",
-							"// });\r",
-							"\r",
-							"// pm.test(\"Response time is less than 2s\", () => {\r",
-							"//   pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"// });\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Marco",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "{{userEmail}}",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "{{userPassword}}",
-							"type": "text"
-						},
-						{
-							"key": "title",
-							"value": "Mr",
-							"type": "text"
-						},
-						{
-							"key": "birth_date",
-							"value": "1",
-							"type": "text"
-						},
-						{
-							"key": "birth_month",
-							"value": "December",
-							"type": "text"
-						},
-						{
-							"key": "birth_year",
-							"value": "1989",
-							"type": "text"
-						},
-						{
-							"key": "firstname",
-							"value": "Marco",
-							"type": "text"
-						},
-						{
-							"key": "lastname",
-							"value": "Drago",
-							"type": "text"
-						},
-						{
-							"key": "company",
-							"value": "Smile",
-							"type": "text"
-						},
-						{
-							"key": "address1",
-							"value": "some",
-							"type": "text"
-						},
-						{
-							"key": "address2",
-							"value": "done",
-							"type": "text"
-						},
-						{
-							"key": "country",
-							"value": "Canada",
-							"type": "text"
-						},
-						{
-							"key": "zipcode",
-							"value": "988799",
-							"type": "text"
-						},
-						{
-							"key": "state",
-							"value": "Zet",
-							"type": "text"
-						},
-						{
-							"key": "city",
-							"value": "Yellow",
-							"type": "text"
-						},
-						{
-							"key": "mobile_number",
-							"value": "789654",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/updateAccount",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"updateAccount"
 					]
 				}
 			},
@@ -684,6 +541,148 @@
 			"response": []
 		},
 		{
+			"name": "Update User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 200\r",
+							"pm.test(\"Returns responseCode 200\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(200);\r",
+							"});\r",
+							"\r",
+							"// Check that string \"User updated!\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"User updated!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Marco",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{userEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mr",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "December",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "1989",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Marco",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Drago",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Smile",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "some",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "done",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "Canada",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "988799",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Zet",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Yellow",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "789654",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/updateAccount",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"updateAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete User Account",
 			"event": [
 				{
@@ -847,16 +846,6 @@
 		{
 			"key": "userPassword",
 			"value": "789x9897",
-			"type": "string"
-		},
-		{
-			"key": "validEmail",
-			"value": "zuzu@test.com",
-			"type": "string"
-		},
-		{
-			"key": "validPassword",
-			"value": "789a9897",
 			"type": "string"
 		}
 	]
