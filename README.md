@@ -2,7 +2,7 @@
 
 This repository contains Postman collections designed for API testing, with the capability to run automated tests using Newman, the CLI companion to Postman. These collections are crafted to ensure that tests are re-runnable without side effects, allowing for consistent and reliable testing in different environments.
 
-### Tests
+### Test Cases
 
 1. Get All Products List
 2. Get All Brands List
