@@ -123,133 +123,6 @@
 			"response": []
 		},
 		{
-			"name": "Login without email parameter",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 400\r",
-							"pm.test(\"Returns responseCode 400\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(400);\r",
-							"});\r",
-							"\r",
-							"// Check that string \"Bad request, email or password parameter is missing in POST request.\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq(\"Bad request, email or password parameter is missing in POST request.\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "password",
-							"value": "123mmm",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"verifyLogin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login with invalid details",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 404\r",
-							"pm.test(\"Returns responseCode 404\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(404);\r",
-							"});\r",
-							"\r",
-							"// Check that string \"User not found!\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq(\"User not found!\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "\"bit@89.com\"",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "\"456aaa\"",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"verifyLogin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Create/Register User Account",
 			"event": [
 				{
@@ -392,6 +265,135 @@
 			"response": []
 		},
 		{
+			"name": "Login without email parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 400\r",
+							"pm.test(\"Returns responseCode 400\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(400);\r",
+							"});\r",
+							"\r",
+							"// Check that string \"Bad request, email or password parameter is missing in POST request.\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"Bad request, email or password parameter is missing in POST request.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "123mmm",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with invalid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 404\r",
+							"pm.test(\"Returns responseCode 404\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(404);\r",
+							"});\r",
+							"\r",
+							"// Check that string \"User not found!\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"User not found!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "\"bit@89.com\"",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "\"456aaa\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login with valid details",
 			"event": [
 				{
@@ -399,6 +401,7 @@
 					"script": {
 						"exec": [
 							"const responseData = pm.response.json();\r",
+							"\r",
 							"// Response status is 200\r",
 							"pm.test(\"Response status code is 200\", () => {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -451,6 +454,116 @@
 					"path": [
 						"api",
 						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Account",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Marco",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{userEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mr",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "December",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "1989",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Marco",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Drago",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Smile",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "some",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "done",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "Canada",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "988799",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Zet",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Yellow",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "789654",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/updateAccount",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"updateAccount"
 					]
 				}
 			},
@@ -536,6 +649,72 @@
 			"response": []
 		},
 		{
+			"name": "DELETE To Verify Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 405\r",
+							"pm.test(\"Returns responseCode 405\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(405);\r",
+							"});\r",
+							"\r",
+							"// Check that string  \"This request method is not supported.\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"This request method is not supported.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email ",
+							"value": "{{userEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete User Account",
 			"event": [
 				{
@@ -543,6 +722,7 @@
 					"script": {
 						"exec": [
 							"const responseData = pm.response.json();\r",
+							"\r",
 							"// Response status is 200\r",
 							"pm.test(\"Response status code is 200\", () => {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -631,12 +811,8 @@
 		},
 		{
 			"key": "userPassword",
-			"value": "\"123456zzz\"",
+			"value": "789a9897",
 			"type": "string"
-		},
-		{
-			"key": "email",
-			"value": ""
 		}
 	]
 }
