@@ -1,19 +1,24 @@
 # Website API Testing With Postman/Newman
 
 This repository contains Postman collections designed for API testing, with the capability to run automated tests using Newman, the CLI companion to Postman. These collections are crafted to ensure that tests are re-runnable without side effects, allowing for consistent and reliable testing in different environments.
+For website API list visit:
+
+```sh
+ https://www.automationexercise.com/api_list
+```
 
 ### Test Cases
 
 1. Get All Products List
 2. Get All Brands List
-3. POST To Create/Register User Account
-4. POST To Verify Login without email parameter
-5. POST To Verify Login with invalid details
-6. POST To Verify Login with valid details
-7. GET user account detail by email
-8. PUT METHOD To Update User Account
-9. DELETE METHOD To Delete User Account
-10. DELETE To Verify Login
+3. POST To Verify Login With Valid Details
+4. POST To Verify Login Without Email Parameter
+5. DELETE To Verify Login
+6. POST To Verify Login With Invalid Details
+7. POST To Create/Register User Account
+8. DELETE To Delete User Account
+9. PUT To Update User Account
+10. GET User Account Detail By Email
 
 ### 💻 Prerequisites
 
@@ -55,7 +60,7 @@ Would like to run this project locally? Open terminal and follow these steps:
     npm install
     ```
 
-## Run Tests
+### Run Tests
 
 Once the installation is complete, you can run the Newman tests as follow:
 
