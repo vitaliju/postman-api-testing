@@ -7,7 +7,7 @@
         "test": "newman run WebsiteAPI-collection.postman_collection.json"
     },
     "keywords": [],
-    "author": "",
+    "author": "Vitalijus: [Github](https://github.com/vitaliju)",
     "license": "ISC",
     "devDependencies": {
         "newman": "^6.2.1"
