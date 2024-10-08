@@ -7,6 +7,531 @@
 	},
 	"item": [
 		{
+			"name": "Create User Account for Login, Update and Delete",
+			"item": [
+				{
+					"name": "Create  User Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Response status is 200\r",
+									"pm.test(\"Response status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// ResponseCode is 201\r",
+									"pm.test(\"Returns responseCode 201\", () => {\r",
+									"    pm.expect(responseData.responseCode).to.eq(201);\r",
+									"});\r",
+									"\r",
+									"// Validate that the response is in JSON format\r",
+									"pm.test(\"Response is in JSON format\", () => {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Check that string \"User created!\" is returned\r",
+									"pm.test(\"Returns correct message\", () => {\r",
+									"    pm.expect(responseData.message).to.eq(\"User created!\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{userEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{userPassword}}",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "April",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1989",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "Marco",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Drago",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Alias",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "Kauno g.",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "Some",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "Canada",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Some",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Some",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "988799",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "789654",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/createAccount",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"createAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login With Valid Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Response status is 200\r",
+									"pm.test(\"Response status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// ResponseCode is 200\r",
+									"pm.test(\"Returns responseCode 200\", () => {\r",
+									"    pm.expect(responseData.responseCode).to.eq(200);\r",
+									"});\r",
+									"\r",
+									"// Validate that the response is in JSON format\r",
+									"pm.test(\"Response is in JSON format\", () => {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Check that string  \"User exists!\" is returned\r",
+									"pm.test(\"Returns correct message\", () => {\r",
+									"    pm.expect(responseData.message).to.eq( \"User exists!\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{userEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{userPassword}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/verifyLogin",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Account Detail By Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Response status is 200\r",
+									"pm.test(\"Response status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Check responseCode is 200\r",
+									"pm.test(\"Returns responseCode 200\", () => {\r",
+									"    pm.expect(responseData.responseCode).to.eq(200);\r",
+									"});\r",
+									"\r",
+									"// Validate that the response is in JSON format\r",
+									"pm.test(\"Response is in JSON format\", () => {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Check that user account is not empty \r",
+									"pm.test(\"Account has user data\", () => {\r",
+									"  pm.expect(responseData).to.have.property('user').and.not.empty;\r",
+									"  pm.expect(responseData.user).to.have.property('name');\r",
+									"  pm.expect(responseData.user).to.have.property('email');\r",
+									"  pm.expect(responseData.user).to.have.property('title');\r",
+									"  pm.expect(responseData.user).to.have.property('birth_day');\r",
+									"  pm.expect(responseData.user).to.have.property('birth_month');\r",
+									"  pm.expect(responseData.user).to.have.property('birth_year');\r",
+									"  pm.expect(responseData.user).to.have.property('first_name');\r",
+									"  pm.expect(responseData.user).to.have.property('last_name');\r",
+									"  pm.expect(responseData.user).to.have.property('company');\r",
+									"  pm.expect(responseData.user).to.have.property('address1');\r",
+									"  pm.expect(responseData.user).to.have.property('address2');\r",
+									"  pm.expect(responseData.user).to.have.property('country');\r",
+									"  pm.expect(responseData.user).to.have.property('state');\r",
+									"  pm.expect(responseData.user).to.have.property('city');\r",
+									"  pm.expect(responseData.user).to.have.property('zipcode');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/getUserDetailByEmail?email={{userEmail}}",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"getUserDetailByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{userEmail}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Response status is 200\r",
+									"pm.test(\"Response status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// ResponseCode is 200\r",
+									"pm.test(\"Returns responseCode 200\", () => {\r",
+									"    pm.expect(responseData.responseCode).to.eq(200);\r",
+									"});\r",
+									"\r",
+									"// Validate that the response is in JSON format\r",
+									"pm.test(\"Response is in JSON format\", () => {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Check that string \"User updated!\" is returned\r",
+									"pm.test(\"Returns correct message\", () => {\r",
+									"    pm.expect(responseData.message).to.eq(\"User updated!\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{userEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{userPassword}}",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "December",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1989",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "{{firstName}}",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "{{lastName}}",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Smile",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "some",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "done",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "Canada",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "988799",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Zet",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Yellow",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "{{phoneNumber}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/updateAccount",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"updateAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Response status is 200\r",
+									"pm.test(\"Response status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// ResponseCode is 200\r",
+									"pm.test(\"Returns responseCode 200\", () => {\r",
+									"    pm.expect(responseData.responseCode).to.eq(200);\r",
+									"});\r",
+									"\r",
+									"// Validate that the response is in JSON format\r",
+									"pm.test(\"Response is in JSON format\", () => {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Check that string  \"Account deleted!\" is returned\r",
+									"pm.test(\"Returns correct message\", () => {\r",
+									"    pm.expect(responseData.message).to.eq(\"Account deleted!\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{userEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{userPassword}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/deleteAccount",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"deleteAccount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Get All Products List",
 			"event": [
 				{
@@ -23,6 +548,11 @@
 							"// Check responseCode is 200\r",
 							"pm.test(\"Returns responseCode 200\", () => {\r",
 							"    pm.expect(responseData.responseCode).to.eq(200);\r",
+							"});\r",
+							"\r",
+							"// Validate that the response is in JSON format\r",
+							"pm.test(\"Response is in JSON format\", () => {\r",
+							"    pm.response.to.be.json;\r",
 							"});\r",
 							"\r",
 							"// Check that products list is not empty \r",
@@ -84,6 +614,11 @@
 							"    pm.expect(responseData.responseCode).to.eq(200);\r",
 							"});\r",
 							"\r",
+							"// Validate that the response is in JSON format\r",
+							"pm.test(\"Response is in JSON format\", () => {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
 							"// Check that Brands list is not empty and have properties 'id' and 'brand'\r",
 							"pm.test(\"Brands list is not empty, have 'id' and 'brand' properties\", () => {\r",
 							"  pm.expect(responseData.brands).to.be.an('array');\r",
@@ -123,6 +658,216 @@
 			"response": []
 		},
 		{
+			"name": "Login With Invalid Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 404\r",
+							"pm.test(\"Returns responseCode 404\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(404);\r",
+							"});\r",
+							"\r",
+							"// Validate that the response is in JSON format\r",
+							"pm.test(\"Response is in JSON format\", () => {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// Check that string \"User not found!\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"User not found!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "\"bit@89.com\"",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "\"456aaa\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Without Email Parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 400\r",
+							"pm.test(\"Returns responseCode 400\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(400);\r",
+							"});\r",
+							"\r",
+							"// Validate that the response is in JSON format\r",
+							"pm.test(\"Response is in JSON format\", () => {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// Check that string \"Bad request, email or password parameter is missing in POST request.\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"Bad request, email or password parameter is missing in POST request.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "123mmm",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete To Verify Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Response status is 200\r",
+							"pm.test(\"Response status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ResponseCode is 405\r",
+							"pm.test(\"Returns responseCode 405\", () => {\r",
+							"    pm.expect(responseData.responseCode).to.eq(405);\r",
+							"});\r",
+							"\r",
+							"// Validate that the response is in JSON format\r",
+							"pm.test(\"Response is in JSON format\", () => {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// Check that string  \"This request method is not supported.\" is returned\r",
+							"pm.test(\"Returns correct message\", () => {\r",
+							"    pm.expect(responseData.message).to.eq(\"This request method is not supported.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2s\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email ",
+							"value": "{{userEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create/Register User Account",
 			"event": [
 				{
@@ -139,6 +884,11 @@
 							"// ResponseCode is 201\r",
 							"pm.test(\"Returns responseCode 201\", () => {\r",
 							"    pm.expect(responseData.responseCode).to.eq(201);\r",
+							"});\r",
+							"\r",
+							"// Validate that the response is in JSON format\r",
+							"pm.test(\"Response is in JSON format\", () => {\r",
+							"    pm.response.to.be.json;\r",
 							"});\r",
 							"\r",
 							"// Check that string \"User created!\" is returned\r",
@@ -169,12 +919,12 @@
 						},
 						{
 							"key": "email",
-							"value": "{{userEmail}}",
+							"value": "{{email}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "{{userPassword}}",
+							"value": "{{password}}",
 							"type": "text"
 						},
 						{
@@ -263,554 +1013,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Login without email parameter",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 400\r",
-							"pm.test(\"Returns responseCode 400\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(400);\r",
-							"});\r",
-							"\r",
-							"// Check that string \"Bad request, email or password parameter is missing in POST request.\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq(\"Bad request, email or password parameter is missing in POST request.\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "password",
-							"value": "123mmm",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"verifyLogin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login with invalid details",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 404\r",
-							"pm.test(\"Returns responseCode 404\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(404);\r",
-							"});\r",
-							"\r",
-							"// Check that string \"User not found!\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq(\"User not found!\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "\"bit@89.com\"",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "\"456aaa\"",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"verifyLogin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login with valid details",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 200\r",
-							"pm.test(\"Returns responseCode 200\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(200);\r",
-							"});\r",
-							"\r",
-							"// Check that string  \"User exists!\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq( \"User exists!\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "{{userEmail}}",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "{{userPassword}}",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"verifyLogin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get user account detail by email",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// Check responseCode is 200\r",
-							"pm.test(\"Returns responseCode 200\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(200);\r",
-							"});\r",
-							"\r",
-							"// Check that user account is not empty \r",
-							"pm.test(\"Account has user data\", () => {\r",
-							"  pm.expect(responseData).to.have.property('user').and.not.empty;\r",
-							"  pm.expect(responseData.user).to.have.property('name');\r",
-							"  pm.expect(responseData.user).to.have.property('email');\r",
-							"  pm.expect(responseData.user).to.have.property('title');\r",
-							"  pm.expect(responseData.user).to.have.property('birth_day');\r",
-							"  pm.expect(responseData.user).to.have.property('birth_month');\r",
-							"  pm.expect(responseData.user).to.have.property('birth_year');\r",
-							"  pm.expect(responseData.user).to.have.property('first_name');\r",
-							"  pm.expect(responseData.user).to.have.property('last_name');\r",
-							"  pm.expect(responseData.user).to.have.property('company');\r",
-							"  pm.expect(responseData.user).to.have.property('address1');\r",
-							"  pm.expect(responseData.user).to.have.property('address2');\r",
-							"  pm.expect(responseData.user).to.have.property('country');\r",
-							"  pm.expect(responseData.user).to.have.property('state');\r",
-							"  pm.expect(responseData.user).to.have.property('city');\r",
-							"  pm.expect(responseData.user).to.have.property('zipcode');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/getUserDetailByEmail?email={{userEmail}}",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"getUserDetailByEmail"
-					],
-					"query": [
-						{
-							"key": "email",
-							"value": "{{userEmail}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User Account",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 200\r",
-							"pm.test(\"Returns responseCode 200\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(200);\r",
-							"});\r",
-							"\r",
-							"// Check that string \"User updated!\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq(\"User updated!\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Marco",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "{{userEmail}}",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "{{userPassword}}",
-							"type": "text"
-						},
-						{
-							"key": "title",
-							"value": "Mr",
-							"type": "text"
-						},
-						{
-							"key": "birth_date",
-							"value": "1",
-							"type": "text"
-						},
-						{
-							"key": "birth_month",
-							"value": "December",
-							"type": "text"
-						},
-						{
-							"key": "birth_year",
-							"value": "1989",
-							"type": "text"
-						},
-						{
-							"key": "firstname",
-							"value": "Marco",
-							"type": "text"
-						},
-						{
-							"key": "lastname",
-							"value": "Drago",
-							"type": "text"
-						},
-						{
-							"key": "company",
-							"value": "Smile",
-							"type": "text"
-						},
-						{
-							"key": "address1",
-							"value": "some",
-							"type": "text"
-						},
-						{
-							"key": "address2",
-							"value": "done",
-							"type": "text"
-						},
-						{
-							"key": "country",
-							"value": "Canada",
-							"type": "text"
-						},
-						{
-							"key": "zipcode",
-							"value": "988799",
-							"type": "text"
-						},
-						{
-							"key": "state",
-							"value": "Zet",
-							"type": "text"
-						},
-						{
-							"key": "city",
-							"value": "Yellow",
-							"type": "text"
-						},
-						{
-							"key": "mobile_number",
-							"value": "789654",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/updateAccount",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"updateAccount"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete User Account",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 200\r",
-							"pm.test(\"Returns responseCode 200\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(200);\r",
-							"});\r",
-							"\r",
-							"// Check that string  \"Account deleted!\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq(\"Account deleted!\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "{{userEmail}}",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "{{userPassword}}",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/deleteAccount",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"deleteAccount"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete To Verify Login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseData = pm.response.json();\r",
-							"\r",
-							"// Response status is 200\r",
-							"pm.test(\"Response status code is 200\", () => {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// ResponseCode is 405\r",
-							"pm.test(\"Returns responseCode 405\", () => {\r",
-							"    pm.expect(responseData.responseCode).to.eq(405);\r",
-							"});\r",
-							"\r",
-							"// Check that string  \"This request method is not supported.\" is returned\r",
-							"pm.test(\"Returns correct message\", () => {\r",
-							"    pm.expect(responseData.message).to.eq(\"This request method is not supported.\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 2s\", () => {\r",
-							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email ",
-							"value": "{{userEmail}}",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "{{userPassword}}",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin",
-					"protocol": "https",
-					"host": [
-						"automationexercise",
-						"com"
-					],
-					"path": [
-						"api",
-						"verifyLogin"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [
@@ -838,12 +1040,37 @@
 	"variable": [
 		{
 			"key": "userEmail",
-			"value": "lulu@test.com",
+			"value": "jojo23@test.com",
 			"type": "string"
 		},
 		{
 			"key": "userPassword",
 			"value": "789x9897",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "{{$randomEmail}}",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "{{$randomPassword}}",
+			"type": "string"
+		},
+		{
+			"key": "firstName",
+			"value": "{{$randomFirstName}}",
+			"type": "string"
+		},
+		{
+			"key": "lastName",
+			"value": "{{$randomLastName}}",
+			"type": "string"
+		},
+		{
+			"key": "phoneNumber",
+			"value": "{{$randomPhoneNumber}}",
 			"type": "string"
 		}
 	]
